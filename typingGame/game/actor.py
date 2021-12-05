@@ -35,7 +35,7 @@ class Actor:
 
     def set_width(self, width):
         self._width = width
-    
+        
     def get_height(self):
         return self._height
 

@@ -1,5 +1,7 @@
 import os
 
+import pyray
+
 MAX_X = 1200
 MAX_Y = 800
 FRAME_RATE = 30
@@ -8,35 +10,50 @@ DEFAULT_SQUARE_SIZE = 20
 DEFAULT_FONT_SIZE = 20
 DEFAULT_TEXT_OFFSET = 4
 
-IMAGE_BRICK = os.path.join(os.getcwd(), "./batter/assets/brick-6.png")
-IMAGE_PADDLE = os.path.join(os.getcwd(), "./batter/assets/bat.png")
-IMAGE_BALL = os.path.join(os.getcwd(), "./batter/assets/ball.png")
+BACKGROUND_IMAGE = os.path.join(os.getcwd(),"./typingGame/assets/background.png")
+IMAGE_BRICK = os.path.join(os.getcwd(), "./typingGame/assets/brick-6.png")
+IMAGE_PADDLE = os.path.join(os.getcwd(), "./typingGame/assets/bat.png")
+IMAGE_BALL = os.path.join(os.getcwd(), "./typingGame/assets/ball.png")
 
-SOUND_START = os.path.join(os.getcwd(), "./batter/assets/start.wav")
-SOUND_BOUNCE = os.path.join(os.getcwd(), "./batter/assets/boing.wav")
-SOUND_OVER = os.path.join(os.getcwd(), "./batter/assets/over.wav")
+SOUND_START = os.path.join(os.getcwd(), "./typingGame/assets/start.wav")
+SOUND_BOUNCE = os.path.join(os.getcwd(), "./typingGame/assets/boing.wav")
+SOUND_OVER = os.path.join(os.getcwd(), "./typingGame/assets/over.wav")
 
-STORY_X = MAX_X
-STORY_Y = MAX_Y - 125
+BACKGROUND_X = 0
+BACKGROUND_Y = 0
 
-STORY_DX = 8
+STORY_X = MAX_X - 5
+STORY_Y = MAX_Y - 250
+
+STORY_DX = -8
 STORY_DY = 0
 
-BRICK_ROWS = int(7)
-BRICK_COLUMNS = int(15)
+BLACK_BLOCK_ROWS = int(32)
+BLACK_BLOCK_COLUMNS = int(48)
 
-PADDLE_X = MAX_X / 2
-PADDLE_Y = MAX_Y - 25
+USER_INPUT_X = STORY_X
+USER_INPUT_Y = STORY_Y + DEFAULT_FONT_SIZE + 5
 
-BRICK_WIDTH = 48
-BRICK_HEIGHT = 24
+BLACK_BLOCK_WIDTH = 24
+BLACK_BLOCK_HEIGHT = 24
 
-BRICK_SPACE = 5
+BLACK_BLOCK_SPACE = 1
 
-PADDLE_SPEED = 10
+USER_INPUT_DX = STORY_DX
+USER_INPUT_DY = STORY_DY
 
-PADDLE_WIDTH = 96
-PADDLE_HEIGHT = 24
+USER_INPUT_WIDTH = 96
+USER_INPUT_HEIGHT = 24
 
 STORY_WIDTH = 24
 STORY_HEIGHT = 24
+
+BLACK_BLOCK_COLOR = pyray.BLACK
+TEXT_BACKGROUND = pyray.WHITE
+user_input_color = pyray.WHITE
+
+PATH = os.path.dirname(os.path.abspath(__file__))
+LIBRARY = open(PATH + "/paragraph1.txt").read()
+STORY = []
+
+USER_INPUT = "george "

@@ -2,7 +2,7 @@ from time import sleep
 
 import pyray
 from game import constants
-from game.black_blocks import Brick
+from game.black_block import Black_block
 
 class Director:
     """A code template for a person who directs the game. The responsibility of 
@@ -26,7 +26,6 @@ class Director:
         self._cast = cast
         self._script = script
         self._keep_playing = True
-        self.brick = Brick()
         
     def start_game(self):
         """Starts the game loop to control the sequence of play."""

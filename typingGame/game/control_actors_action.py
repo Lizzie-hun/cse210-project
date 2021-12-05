@@ -27,35 +27,10 @@ class ControlActorsAction(Action):
         Args:
             cast (dict): The game actors {key: tag, value: list}.
         """
-        direction = self._input_service.get_direction()
-        paddle = cast["paddle"][0] # there's only one in the cast
-
-        position = paddle.get_position()
-        velocity = paddle.get_velocity()
-
-        x = position.get_x()
-        y = position.get_y()
-        dx = velocity.get_x()
-        dy = velocity.get_y()
-
-        x = (x + dx)
-        y = (y + dy)
-
-        right_x = paddle.get_right_edge()
-
-
-        if right_x > constants.MAX_X:
-            x = constants.MAX_X - 100
-    
-        elif x < 0:
-            x = 0
-        
-
-        position = Point(x, y)
-        paddle.set_position(position)
-
-        paddle.set_velocity(direction.scale(constants.PADDLE_SPEED))
-
-    def remove_actor(self,cast):
-        cast = cast["brick"]
-        #brick.pop
+        black_block = cast["black_block"]
+        user_input = cast["user_input"][0]
+        story = cast["story"][0]
+        story_text = story.get_text()
+        user_input_text = user_input.get_text()
+        if user_input_text not in story_text:
+            black_block.pop(-1)

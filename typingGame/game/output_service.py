@@ -2,6 +2,7 @@ import sys
 from game import constants
 import pyray
 
+
 class OutputService:
     """Outputs the game state. The responsibility of the class of objects is to draw the game state on the terminal. 
     
@@ -36,11 +37,11 @@ class OutputService:
         pyray.begin_drawing()
         pyray.clear_background(pyray.BLACK)
 
-    def draw_box(self, x, y, width, height):
+    def draw_box(self, x, y, width, height, color):
         """
         Draws at rectangular box with the provided specifications.
         """
-        pyray.draw_rectangle(x, y, width, height, pyray.BLUE)
+        pyray.draw_rectangle(x, y, width, height, color)
 
     def draw_text(self, x, y, text, is_dark_text):
         """
@@ -77,6 +78,7 @@ class OutputService:
         y = position.get_y()
         width = actor.get_width()
         height = actor.get_height()
+        
 
         if actor.has_image():
             image = actor.get_image()
@@ -86,7 +88,8 @@ class OutputService:
             text = actor.get_text()
             self.draw_text(x, y, text, True)
         elif width > 0 and height > 0:
-            self.draw_box(x, y, width, height)
+            color = actor.color
+            self.draw_box(x, y, width, height, color)
         
     def draw_actors(self, actors):
         """Renders the given list of actors on the screen.

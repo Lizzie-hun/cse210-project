@@ -3,8 +3,9 @@ from game.move_actors_action import MoveActorsAction
 from game import constants
 from game.action import Action
 from game.audio_service import AudioService
+from game.point import Point
 
-class HandleCollisionsAction(Action):
+class HandleEdgeBounce(Action):
     """A code template for handling collisions. The responsibility of this class of objects is to update the game state when actors collide.
     
     Stereotype:
@@ -23,17 +24,15 @@ class HandleCollisionsAction(Action):
         """
         audio_service = AudioService()
 
-        bricks = cast["brick"]
-        ball = cast["ball"][0] # there's only one
-        paddle = cast["paddle"][0]
+        text_background = cast["text_background"][0]
+
+        position = text_background.get_position()
+        x = position.get_x()
+
+        if x < 0:
+            dx = 0
+            dy = 0
         
-        if self._physics_service.is_collision(ball,paddle):
-                self._move_actors_action._hit_block(ball)
-                
-        for brick in bricks:
-            
-            if self._physics_service.is_collision(ball,brick):
-                self._move_actors_action._hit_block(ball)
-                audio_service.play_sound(constants.SOUND_BOUNCE)
-                bricks.remove(brick)
-           
+            velocity = Point(dx, dy)
+
+            text_background.set_velocity(velocity)

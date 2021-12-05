@@ -18,47 +18,25 @@ class InputService:
             self (InputService): An instance of InputService.
         """
         pass
-        
-    def get_direction(self):
-        """Gets the selected direction based on the currently pressed keys.
+
+
+    def window_should_close(self):
+        """Determines if the user is trying to close the window
 
         Args:
             self (InputService): An instance of InputService.
-
-        Returns:
-            Point: The selected direction.
         """
-        dx = 0
-        dy = 0
-
-        if self.is_left_pressed():
-            dx = -1
-        
-        if self.is_right_pressed():
-            dx = 1
-
-        """
-        if self.is_up_pressed():
-            dy = -1
-        
-        if self.is_down_pressed():
-            dy = 1
-        """
-
-        direction = Point(dx, dy)
-        return direction
-
-    def is_left_pressed(self):
-        return pyray.is_key_down(pyray.KEY_LEFT)
-
-    def is_right_pressed(self):
-        return pyray.is_key_down(pyray.KEY_RIGHT)
-    """
-    def is_up_pressed(self):
-        return pyray.is_key_down(pyray.KEY_UP)
-
-    def is_down_pressed(self):
-        return pyray.is_key_down(pyray.KEY_DOWN)
-    """
-    def window_should_close(self):
         return pyray.window_should_close()
+        
+    def get_letter(self):
+        """Collects the user input into a string.
+
+        Args:
+            self (InputService): An instance of InputService.
+        
+        """
+        key_string = ""
+        key_int = pyray.get_key_pressed()
+        if key_int != -1:
+            key_string = chr(key_int)
+        return key_string

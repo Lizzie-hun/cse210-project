@@ -43,8 +43,13 @@ class MoveActorsAction(Action):
 
         x = position.get_x()
         y = position.get_y()
+
         dx = velocity.get_x()
         dy = velocity.get_y()
+
+        
+        velocity = Point(dx,dy)
+        actor.set_velocity(velocity)
 
         x = (x + dx)
         y = (y + dy)
@@ -52,41 +57,7 @@ class MoveActorsAction(Action):
         position = Point(x, y)
         actor.set_position(position)
 
-        right_x = actor.get_right_edge()
-        bottom_y = actor.get_bottom_edge()
-
-        if right_x == constants.MAX_X:
-            dx = -dx
-            dy = dy
-            audio_service.play_sound(constants.SOUND_BOUNCE)
-
-        elif x == 0:
-            dx = -dx
-            dy = dy
-            audio_service.play_sound(constants.SOUND_BOUNCE)
-
-        if bottom_y == 0:
-            dx = dx
-            dy = -dy
-            audio_service.play_sound(constants.SOUND_BOUNCE)
-        
+   
         velocity = Point(dx,dy)
-        
-        if y > constants.MAX_Y - constants.STORY_HEIGHT:
-            audio_service.play_sound(constants.SOUND_OVER)
-            velocity = Point(0,0)
-            sleep(5)
-            pyray.close_window()
-
         actor.set_velocity(velocity)
         
-
-    def _hit_block(self, actor):               
-        
-        velocity = actor.get_velocity()
-
-        dx = velocity.get_x()
-        dy = velocity.get_y()
-        
-        velocity = Point(dx, -dy)
-        actor.set_velocity(velocity)
