@@ -86,6 +86,12 @@ def main():
     director = Director(cast, script)
     director.start_game()
 
+    if black_blocks:
+        continue_game = True
+    else:
+        continue_game = False
+    #if continue_game == False:
+        #audio_service.play_sound(constants.SOUND_OVER)
     audio_service.stop_audio()
    
         

@@ -1,3 +1,4 @@
+import pyray
 from game import constants
 from game.point import Point
 
@@ -29,6 +30,7 @@ class Actor:
         self._width = 0
         self._height = 0
         self._image = ""
+        self.color = pyray.BLACK
 
     def get_width(self):
         return self._width

@@ -37,6 +37,6 @@ class InputService:
         """
         key_string = ""
         key_int = pyray.get_key_pressed()
-        if key_int != -1:
-            key_string = chr(key_int)
+        if key_int != -1 and key_int != 0:
+            key_string = chr(key_int).lower()
         return key_string
