@@ -22,6 +22,7 @@ from game.control_actors_action import ControlActorsAction
 from game.handle_edge_bounce import HandleEdgeBounce
 from game.handle_adding_letter import HandleAddingLetter
 from game.move_actors_action import MoveActorsAction
+from game.check_for_end_action import CheckForEndAction
 
 def main():
 
@@ -47,13 +48,13 @@ def main():
 
     cast["black_block"] = black_blocks
 
-
     text_background  = Text_background()
     cast["text_background"] = [text_background]
 
     story = Story()
     cast["story"] = [story]
     # TODO: Create a ball here and add it to the list
+
 
     user_input = User_input()
     cast["user_input"] = [user_input]
@@ -71,11 +72,12 @@ def main():
     move_actors_action = MoveActorsAction()
     handle_edge_bounce = HandleEdgeBounce(physics_service)
     handle_adding_letter = HandleAddingLetter(input_service)
-    control_actors_action = ControlActorsAction(input_service)
+    control_actors_action = ControlActorsAction(audio_service)
+    check_for_end_action = CheckForEndAction(audio_service)
 
     # TODO: Create additional actions here and add them to the script
     script["input"] =  [handle_adding_letter]
-    script["update"] = [move_actors_action, handle_edge_bounce, control_actors_action]
+    script["update"] = [move_actors_action, handle_edge_bounce, check_for_end_action, control_actors_action]
     script["output"] = [draw_actors_action]
 
     # Start the game
@@ -85,16 +87,6 @@ def main():
     
     director = Director(cast, script)
     director.start_game()
-
-    if black_blocks:
-        continue_game = True
-    else:
-        continue_game = False
-    #if continue_game == False:
-        #audio_service.play_sound(constants.SOUND_OVER)
-    audio_service.stop_audio()
-   
-        
-
+    
 if __name__ == "__main__":
     main()

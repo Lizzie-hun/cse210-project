@@ -25,7 +25,7 @@ BACKGROUND_Y = 0
 STORY_X = MAX_X - 5
 STORY_Y = MAX_Y - 250
 
-STORY_DX = -3
+STORY_DX = -2
 STORY_DY = 0
 
 BLACK_BLOCK_ROWS = int(32)
@@ -52,7 +52,7 @@ BLACK_BLOCK_COLOR = pyray.BLACK
 TEXT_BACKGROUND = pyray.WHITE
 
 PATH = os.path.dirname(os.path.abspath(__file__))
-LIBRARY = open(PATH + "/paragraph1.txt").read()
+LIBRARY = open(PATH + "/paragraph1.txt").read().lower()
 STORY = []
 
-USER_INPUT = "george "
+USER_INPUT = ""

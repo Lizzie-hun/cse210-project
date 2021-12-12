@@ -22,4 +22,4 @@ class HandleAddingLetter(Action):
         user_input = cast["user_input"][0]
         letter = self._input_service.get_letter()
         if letter != "":    
-            user_input.set_text(letter)
+            user_input.add_text(letter)

@@ -20,5 +20,5 @@ class User_input(Actor):
         self.set_position(position)
         self.set_velocity(velocity)
 
-    def set_text(self, text):
+    def add_text(self, text):
         self._text += text
